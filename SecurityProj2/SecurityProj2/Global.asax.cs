@@ -6,6 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using System.Data.Entity;
+using SecurityProj2.Models;
 
 namespace SecurityProj2
 {
@@ -23,6 +25,7 @@ namespace SecurityProj2
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+            //Database.SetInitializer(new DropCreateDatabaseAlways<PasswordKeyDBContext>());
         }
     }
 }
