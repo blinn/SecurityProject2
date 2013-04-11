@@ -328,6 +328,34 @@ namespace SecurityProj2.Controllers
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
+        public ActionResult PasswordReset()
+        {
+            if (!Membership.EnablePasswordReset)
+            {
+                throw new Exception("Password reset is not allowed");
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult PasswordReset(string userName)
+        {
+            if (!MembershipService.PasswordResetEnabled)
+            {
+                throw new Exception("Password reset is not allowed");
+            }
+
+            if (MembershipService.RequiresQuestionAndAnswer)
+            {
+                return RedirectToAction("QuestionAndAnswer", new { userName = userName });
+            }
+            else
+            {
+                MembershipService.ResetPassword(userName, GetLoginUrl());
+                return RedirectToAction("PasswordResetFinal", new { userName = userName });
+            }
+        }
+
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {

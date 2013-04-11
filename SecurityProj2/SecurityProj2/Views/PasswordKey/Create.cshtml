@@ -1,0 +1,46 @@
+﻿@model SecurityProj2.Models.PasswordKey
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <br />
+    <fieldset>
+        <legend>PasswordKey</legend>
+        <div style="float:left; padding-right:10px">
+            <div class="editor-label">
+                @Html.LabelFor(model => model.HandleName)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.HandleName)
+                @Html.ValidationMessageFor(model => model.HandleName)
+            </div>
+        
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+        </div>
+        <div style="float:right">
+            @Html.LabelFor(model => model.includeUpper)
+            @Html.EditorFor(model => model.includeUpper)
+            @Html.LabelFor(model => model.includeNumbers)
+            @Html.EditorFor(model => model.includeNumbers)
+            @Html.LabelFor(model => model.includeSpecial)
+            @Html.EditorFor(model => model.includeSpecial)
+        </div>
+        
+        
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

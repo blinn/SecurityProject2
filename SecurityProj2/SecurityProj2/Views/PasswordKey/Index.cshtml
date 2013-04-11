@@ -1,0 +1,39 @@
+﻿@model IEnumerable<SecurityProj2.Models.PasswordKey>
+
+@{
+    ViewBag.Title = "Manage";
+}
+
+<h2>Your Passwords</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HandleName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    if (item.UserName == User.Identity.Name)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HandleName)
+        </td>
+        <td>
+        @using (Html.BeginForm("Details", "PasswordKey", new { id = item.UserName }))
+        {
+        <input type="submit" value="Show" />
+        }
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id = item.PasswordId })
+        </td>
+    </tr>
+    }
+}
+
+</table>
