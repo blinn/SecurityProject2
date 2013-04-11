@@ -294,13 +294,7 @@
     <Content Include="Views\PasswordKey\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\PasswordKey\Details.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Views\PasswordKey\Create.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\PasswordKey\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\PasswordKey\Delete.cshtml" />
