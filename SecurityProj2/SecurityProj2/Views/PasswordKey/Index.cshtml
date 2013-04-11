@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Manage";
+    var tempStorage ="";
 }
 
 <h2>Your Passwords</h2>
@@ -9,6 +10,7 @@
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
+<div style="float:left">
 <table>
     <tr>
         <th>
@@ -24,10 +26,7 @@
             @Html.DisplayFor(modelItem => item.HandleName)
         </td>
         <td>
-        @using (Html.BeginForm("Details", "PasswordKey", new { id = item.UserName }))
-        {
-        <input type="submit" value="Show" />
-        }
+        <input id="showHideBtn" type="submit" value="Show" onclick="showPassword('@item.Password')"/>
         </td>
         <td>
             @Html.ActionLink("Delete", "Delete", new { id = item.PasswordId })
@@ -35,5 +34,42 @@
     </tr>
     }
 }
-
 </table>
+</div>
+<div style="float:right">
+    <textarea disabled rows="2" cols="10" id="displayPass" style="width:300px;"></textarea>
+
+    <div>
+    <button id="copyToClip" data-clipboard-text="">Copy to Clipboard</button>
+    </div>
+</div>
+
+<script src="../../Scripts/jquery-1.7.1.js" type="text/javascript"></script>
+<script src="../../Scripts/ZeroClipboard.min.js" type="text/javascript"></script>
+<script type="text/javascript">
+    var $ = jQuery;
+    var clip = new ZeroClipboard(document.getElementById("copyToClip"), {
+        moviePath: "/Content/ZeroClipboard.swf"
+    });
+
+    function showPassword(password) {
+        $("#displayPass").val(password);
+        $("#copyToClip").attr("data-clipboard-text", password);
+        window.setTimeout(function () {
+            $("#displayPass").val("");
+            $("#copyToClip").attr("data-clipboard-text", "");
+        }, 5000);
+    };
+    clip.on('complete', function (client, args) {
+        if (args.text === "") {
+            alert("The password must be visible when button is pushed.");
+        }
+        else {
+            alert("Pasword was copied to clipboard");
+            $("#displayPass").val("");
+            }
+    });
+
+</script>
+
+

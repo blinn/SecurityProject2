@@ -25,12 +25,32 @@
         </p>
         </div>
         <div style="float:right">
-            @Html.LabelFor(model => model.includeUpper)
-            @Html.EditorFor(model => model.includeUpper)
-            @Html.LabelFor(model => model.includeNumbers)
-            @Html.EditorFor(model => model.includeNumbers)
-            @Html.LabelFor(model => model.includeSpecial)
-            @Html.EditorFor(model => model.includeSpecial)
+        <h3>Do you want the password to contain?</h3>
+        <br />
+            <div style="float:left">
+                @Html.LabelFor(model => model.includeUpper, "Uppercase")
+            </div>
+            <div style="float:right">
+                @Html.EditorFor(model => model.includeUpper)
+            </div>
+            <br />
+            <br />
+
+            <div style="float:left">
+                @Html.LabelFor(model => model.includeNumbers, "Numbers")
+            </div>
+            <div style="float:right">
+                @Html.EditorFor(model => model.includeNumbers)
+            </div>
+             <br />
+             <br />
+
+            <div style="float:left">
+                @Html.LabelFor(model => model.includeSpecial, "Special Characters")
+            </div>
+            <div style="float:right">
+                @Html.EditorFor(model => model.includeSpecial)
+            </div>
         </div>
         
         
