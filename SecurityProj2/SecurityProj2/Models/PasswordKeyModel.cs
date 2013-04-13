@@ -23,6 +23,9 @@ namespace SecurityProj2.Models
         public bool includeUpper { get; set; }
         public bool includeNumbers { get; set; }
         public bool includeSpecial { get; set; }
+
+        [Range(5, 100, ErrorMessage = "Value must be between 5 and 100")]
+        [Display(Name = "Length")]
         public int passwordLength { get; set; }
         
     }

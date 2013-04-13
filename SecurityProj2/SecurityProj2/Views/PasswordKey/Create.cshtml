@@ -51,6 +51,20 @@
             <div style="float:right">
                 @Html.EditorFor(model => model.includeSpecial)
             </div>
+             <br />
+             <br />
+
+            <div style="float:left">
+                @Html.LabelFor(model => model.passwordLength, "Length")
+            </div>
+            <div style="float:right">
+                @Html.TextBoxFor(model => model.passwordLength, new { @class = "textboxInput" })
+                <br />
+                <br />
+                <br />
+                @Html.ValidationMessageFor(model => model.passwordLength)
+            </div>
+
         </div>
         
         

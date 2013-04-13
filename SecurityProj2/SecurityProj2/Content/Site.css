@@ -14,6 +14,12 @@ body {
     padding: 0;
 }
 
+.textboxInput
+{
+    width:35px;
+    height:auto;
+}
+
 #deleteBtn
 {
     background-color:#E03D3F;
