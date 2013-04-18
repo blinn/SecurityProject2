@@ -78,7 +78,7 @@ namespace SecurityProj2.Controllers
                 passwordData.PasswordId = Guid.NewGuid();
                 passwordData.Password = encryptedPassword;
                 passwordData.HandleName = encryptedHandlename;
-                passwordData.passwordLength = 0;
+                passwordData.passwordLength = 100;
 
                 db.Keys.Add(passwordData);
                 db.SaveChanges();
@@ -95,7 +95,7 @@ namespace SecurityProj2.Controllers
             string completeArrString = "abcdefghijklmnopqrstuvwxyz";;
             string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             string numbers = "123456789";
-            string special = "@%+!#$?-";
+            string special = "@%+!#$?-*";
             if(includeUpper){
                 completeArrString = completeArrString + upper;
             }

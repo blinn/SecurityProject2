@@ -41,7 +41,7 @@
 </table>
 </div>
 <div style="float:right">
-    <textarea disabled rows="2" cols="10" id="displayPass" style="width:300px;"></textarea>
+    <textarea disabled rows="2" cols="10" id="displayPass" style=" height:100px; width:400px;"></textarea>
 
     <div>
     <button id="copyToClip" data-clipboard-text="">Copy to Clipboard</button>
@@ -70,7 +70,7 @@
         console.log(idleTime);
         if (idleTime >= 5) { // 5 minutes
             $("#logoutForm").submit();
-            alert("Session Timeout");
+            alert("You were inactive for 5 minutes and have been logged out.");
         }
     };
     var clip = new ZeroClipboard(document.getElementById("copyToClip"), {
@@ -83,7 +83,7 @@
         window.setTimeout(function () {
             $("#displayPass").val("");
             $("#copyToClip").attr("data-clipboard-text", "");
-        }, 5000);
+        }, 20000);
     };
     clip.on('complete', function (client, args) {
         if (args.text === "") {
