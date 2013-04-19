@@ -71,7 +71,7 @@ namespace SecurityProj2.Controllers
             {
 
                 var token = WebSecurity.GeneratePasswordResetToken(mu.UserName, 10);
-                var resetLink = "href='" + Url.Action("ResetPasswordConfirm", "Email", new { username = email, rt = token }, "http") + "'>Reset Password";
+                var resetLink = "http://passwordvault.apphb.com/Email/ResetPasswordConfirm?username=" + email + "&rt=" + token;
                 string emailBody = "Please click the link to reset your password  "
                     + resetLink; //edit it
                 string subject = "Password Reset Token";
