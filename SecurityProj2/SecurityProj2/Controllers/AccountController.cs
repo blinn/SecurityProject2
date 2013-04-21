@@ -11,6 +11,8 @@ using WebMatrix.WebData;
 using SecurityProj2.Filters;
 using SecurityProj2.Models;
 
+
+//AccountController.cs manages all account functionality that deal with logging in/out, registering, and managing account information.
 namespace SecurityProj2.Controllers
 {
     [Authorize]
@@ -19,6 +21,7 @@ namespace SecurityProj2.Controllers
     {
         //
         // GET: /Account/Login
+        // Returns Login View
 
         [AllowAnonymous]
         public ActionResult Login(string returnUrl)
@@ -29,7 +32,7 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /Account/Login
-
+        // Performs login validation when user logs in and enters username/password combination
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -47,7 +50,7 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /Account/LogOff
-
+        // Logs user off and redirects to Home/Index View
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
@@ -59,7 +62,7 @@ namespace SecurityProj2.Controllers
 
         //
         // GET: /Account/Register
-
+        // Retuns Register View
         [AllowAnonymous]
         public ActionResult Register()
         {
@@ -68,7 +71,7 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /Account/Register
-
+        // Validates Register form and creates user account if username is not currently used and if password meets criteria
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -95,7 +98,7 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /Account/Disassociate
-
+        // Helper function for loging out of account
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Disassociate(string provider, string providerUserId)
@@ -124,7 +127,7 @@ namespace SecurityProj2.Controllers
 
         //
         // GET: /Account/Manage
-
+        // Returns Manage account view
         public ActionResult Manage(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
@@ -139,7 +142,7 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /Account/Manage
-
+        // This function is in charge of updating and reseting password
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Manage(LocalPasswordModel model)
@@ -202,7 +205,7 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /Account/ExternalLogin
-
+        // Login functionality
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -213,7 +216,7 @@ namespace SecurityProj2.Controllers
 
         //
         // GET: /Account/ExternalLoginCallback
-
+        //
         [AllowAnonymous]
         public ActionResult ExternalLoginCallback(string returnUrl)
         {
@@ -246,7 +249,7 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /Account/ExternalLoginConfirmation
-
+        // Login helper function. 
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
@@ -328,6 +331,7 @@ namespace SecurityProj2.Controllers
             return PartialView("_RemoveExternalLoginsPartial", externalLogins);
         }
 
+        // Start of AccountController helper functions
         #region Helpers
         private ActionResult RedirectToLocal(string returnUrl)
         {
@@ -364,7 +368,8 @@ namespace SecurityProj2.Controllers
                 OAuthWebSecurity.RequestAuthentication(Provider, ReturnUrl);
             }
         }
-
+        
+        //Error handler
         private static string ErrorCodeToString(MembershipCreateStatus createStatus)
         {
             // See http://go.microsoft.com/fwlink/?LinkID=177550 for

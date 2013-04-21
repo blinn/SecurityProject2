@@ -11,17 +11,21 @@ using System.Text;
 using System.Security.Cryptography;
 using System.IO;
 
+
+////PasswordKeyController.cs manages all functionality with adding, deleting, encrypt/decrypting, password keys (username/random password combination)
 namespace SecurityProj2.Controllers
 {
     public class PasswordKeyController : Controller
     {
+        //This is the 128 bit key that all encryption and decrytion uses
         private string aesKeyString = "ng©sâ~ëþ—l+×’.‚èºJB#\n\"OøÎ&\v¯¼\t#¯";
+        //Secondary key that also helps with encrypt/decryption
         private string aesRijIV = "’µHß“„ØÃ¼½&ä";
         private PasswordKeyDBContext db = new PasswordKeyDBContext();
 
         //
         // GET: /PasswordKey/
-
+        // Returns PasswordKey/Index View which lists all passwords saved for specific user.
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)
@@ -47,7 +51,7 @@ namespace SecurityProj2.Controllers
 
         //
         // GET: /PasswordKey/Create
-
+        // Returns  PasswordKey/Create View
         public ActionResult Create()
         {
             if (User.Identity.IsAuthenticated)
@@ -62,7 +66,8 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /PasswordKey/Create
-
+        // User enters password key information (account name, length, if password has numbers, if password has special char, if password has uppercase) 
+        // Generates random password and encrypts data and saves it in database
         [HttpPost]
         public ActionResult Create(PasswordKey passwordData)
         {
@@ -88,6 +93,8 @@ namespace SecurityProj2.Controllers
             return View(passwordData);
         }
 
+
+        //Generates and returns random password
         public string generatePassword(int size, bool includeUpper, bool includeNumbers, bool includeSpecial)
         {
             Random random = new Random();
@@ -117,7 +124,7 @@ namespace SecurityProj2.Controllers
 
         //
         // GET: /PasswordKey/Delete/5
-
+        // Removes passwordKey item from database
         public ActionResult Delete(Guid id)
         {
             PasswordKey passwordkey = db.Keys.Find(id);
@@ -141,7 +148,7 @@ namespace SecurityProj2.Controllers
 
         //
         // POST: /PasswordKey/Delete/5
-
+        // Confirms deletion of passwordKey item
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(Guid id)
         {
@@ -159,6 +166,7 @@ namespace SecurityProj2.Controllers
 
     }
 
+    //AES Encrytion Class. Code credit goes to Microsoft.com
     public class AES
     {
         public static string Main(string password, string key, string rijIV, bool encrypt)
@@ -216,6 +224,8 @@ namespace SecurityProj2.Controllers
             }
             
         }
+
+        //Encryption AES algorithm
         public static byte[] EncryptStringToBytes(string plainText, byte[] Key, byte[] IV)
         {
             // Check arguments. 
@@ -258,6 +268,7 @@ namespace SecurityProj2.Controllers
 
         }
 
+        //Decryption AES algorithm
         static string DecryptStringFromBytes(byte[] cipherText, byte[] Key, byte[] IV)
         {
             // Check arguments. 

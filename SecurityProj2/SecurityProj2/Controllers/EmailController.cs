@@ -9,13 +9,16 @@ using SecurityProj2.Models;
 using WebMatrix.WebData;
 using SecurityProj2.Controllers;
 
+
+
+//EmailController.cs manages all email reset functionality like Email reset and Forgot password
 namespace SecurityProj2.Controllers
 {
     public class EmailController : Controller
     {
         //
         // GET: /Email/
-
+        //Returns Reset View
         public ActionResult Reset()
         {
             EmailModel email = new EmailModel();
@@ -23,12 +26,14 @@ namespace SecurityProj2.Controllers
             return View();
         }
 
+        //Returns Email/EmailSent View that displays password forget confirmation
         public ActionResult EmailSent()
         {
             return View();
         }
 
 
+        //Returns Email/ResetPasswordCondirm View and temporary password is issued if user clicked link in Forgot password email.
         public ActionResult ResetPasswordConfirm(string username, string rt)
         {
             Random random = new Random();
@@ -48,16 +53,21 @@ namespace SecurityProj2.Controllers
             return View(pr);
         }
 
+        //Returns Email/EmailSuccess View. Email successfully sent reset token to user account
         public ActionResult EmailSuccess()
         {
             return View();
         }
 
+
+        //Returns Email/EmailFail View. Email failed to send reset token to user account
         public ActionResult EmailFail()
         {
             return View();
         }
 
+
+        //Tries to send email to parameter "email" if the username exists. Inside the email, there is a password reset token
         public string Send(String email)
         {
             MailMessage message = new MailMessage();
@@ -78,7 +88,7 @@ namespace SecurityProj2.Controllers
                 message.Body = emailBody;
                 message.Subject = subject;
                 message.To.Add(new MailAddress(email));
-                message.From = new MailAddress("depauwbookexchange@gmail.com");
+                message.From = new MailAddress("passVaultSystem@gmail.com");
 
                 try
                 {
