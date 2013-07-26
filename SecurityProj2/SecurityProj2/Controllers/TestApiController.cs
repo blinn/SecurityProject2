@@ -17,6 +17,7 @@ namespace SecurityProj2.Controllers
     {
         private string tfsTeamProjectCollectionUrl = "https://code.allegient.com/tfs/crm";
         // GET api/testapi
+        [HttpGet]
         public List<ProjectItems> GetTest2()
         {
             string usernameToImpersonate = "blinn";
@@ -51,6 +52,7 @@ namespace SecurityProj2.Controllers
         }
 
         // GET api/testapi
+        [HttpGet]
         public IEnumerable<string> GetTest()
         {
             TfsTeamProjectCollection tfs = new TfsTeamProjectCollection(new Uri(tfsTeamProjectCollectionUrl));
