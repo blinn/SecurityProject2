@@ -178,7 +178,6 @@
     <Compile Include="Controllers\EmailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PasswordKeyController.cs" />
-    <Compile Include="Controllers\TestApiController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -186,7 +185,6 @@
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\EmailModel.cs" />
     <Compile Include="Models\PasswordKeyModel.cs" />
-    <Compile Include="Models\ProjectItems.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
